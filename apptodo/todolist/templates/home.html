@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% block content %}
+
+	{% if messages %}
+		{% for message in messages %}
+		<div class='alert alert-warning alert-dismissable' role='alert'>
+			<button class="close" data-dismiss='alert'>
+				<small><sup></sup></small>
+			</button>
+			{{ message }}
+
+		</div>
+		{% endfor %}
+	{% endif %}
+	
+	{% if all_items %}
+		{% for things in all_items %}
+			{% if things.completed %}
+						<br/>
+						<div class="st">
+						
+						<br/>
+						<h3 class="buhu sr">{{ things.item }}</h3>
+						<br/>
+						<hr>
+				
+						
+						<a class="btn btn-outline-primary" href="{% url   'uncross' things.id %}">Un cross</a>
+						<a class="btn btn-outline-danger" href="{% url 'delete' things.id %}">Delete</a>
+						<a class="btn btn-outline-warning" href="{% url 'edit' things.id %}">Edit</a>
+						<br/>
+						<br>
+						
+						</div>
+
+					
+
+			{% else %}
+			<br/>
+						<div class="st">
+						
+						<br/>
+						<h3 class="buhu">{{ things.item }}</h3>
+						<br/>
+						<hr>
+				
+						
+						<a class="btn btn-outline-primary" href="{% url   'cross_off' things.id %}">cross off</a>
+						<a class="btn btn-outline-danger" href="{% url 'delete' things.id %}">Delete</a>
+						<a class="btn btn-outline-warning" href="{% url 'edit' things.id %}">Edit</a>
+						<br/>
+						<br>
+						
+						</div>
+						
+			
+			{% endif %}
+			
+		{% endfor %}
+		</table>
+
+	{% endif %}
+
+{% endblock content %}
